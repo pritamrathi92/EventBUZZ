@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <!--  Header  Starts>
+        <LinearLayout android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip"
+            android:orientation="vertical">
+            <Logo Start-->
+
+            <!-- Logo Ends>
+        </LinearLayout>
+        <Header Ends -->
+        <!-- Footer Start -->
+        <!-- Footer Ends -->
+
+        <!-- Event Creation Form -->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:id="@+id/linearLayout">
+            <!--android:layout_below="@id/header"-->
+            <!-- Full Name Label -->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="Event Name"
+                android:textAllCaps="false"
+                android:textStyle="bold|italic"
+                android:typeface="monospace"
+                tools:textColor="@android:color/black" />
+            <EditText android:id="@+id/EventName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="20dip"
+                android:text=""/>
+            <!--  Email Label -->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="Event Description"
+                android:textColor="#372c24"
+                android:textStyle="bold|italic"
+                android:typeface="monospace" />
+            <EditText android:id="@+id/EventDescription"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:layout_marginBottom="20dip"
+                android:inputType="textMultiLine"
+                android:text=""/>
+            <!-- Password Label -->
+
+
+            <LinearLayout android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:fontFamily="casual"
+                    android:text="Event Date"
+                    android:textColor="#372c24"
+                    android:textStyle="bold|italic" />
+
+                <Button
+                    android:id="@+id/setDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_toRightOf="@id/date"
+                    android:fontFamily="serif-monospace"
+                    android:onClick="setDate"
+                    android:text="Set Date"
+                    android:typeface="monospace" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:fontFamily="casual"
+                android:text="Event Time"
+                android:textColor="#372c24"
+                android:textStyle="bold|italic" />
+
+            <EditText android:id="@+id/EventTime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:inputType="time"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:fontFamily="casual"
+                android:text="Event Duration"
+                android:textColor="#372c24"
+                android:textStyle="bold|italic" />
+            <EditText android:id="@+id/EventDuration"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:inputType="time"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:fontFamily="casual"
+                android:text="Event Capacity"
+                android:textColor="#372c24"
+                android:textStyle="bold|italic" />
+            <EditText android:id="@+id/EventCapacity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:inputType="number"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:fontFamily="casual"
+                android:text="Venue"
+                android:textColor="#372c24"
+                android:textStyle="bold|italic" />
+            <EditText android:id="@+id/EventVenue"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:fontFamily="casual"
+                android:text="City"
+                android:textColor="#372c24"
+                android:textStyle="bold|italic" />
+            <EditText android:id="@+id/EventCity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text=""/>
+
+        <Button android:id="@+id/btnCreateEvent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="Create new EVENT"/>
+            <!-- Link to Login Screen -->
+
+        </LinearLayout>
+
+        <!-- Registration Form Ends -->
+    </RelativeLayout>
+</ScrollView>

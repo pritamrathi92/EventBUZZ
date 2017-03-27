@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">EventBUZZ</string>
+    <string name="title_activity_event_list">EventList</string>
+</resources>
