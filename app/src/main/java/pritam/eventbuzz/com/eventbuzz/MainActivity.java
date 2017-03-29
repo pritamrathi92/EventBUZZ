@@ -35,10 +35,10 @@ public class MainActivity extends Activity implements OnClickListener {
     private TextView dateView;
     private int year, month, day;
     private class LongRunningGetIO extends AsyncTask <Void, Void, String> {
-        String mEventName,mEventDescription,mEventDate,mEventTime,mEventDuration,mEventCapacity,mEventVenue,mEventCity;
+        String mEventName,mEventDescription,mEventDate,mEventTime,mEventDuration,mEventCapacity,mEventVenue,mEventCity,mEventCategory;
 
         private JSONObject mUser;
-        public LongRunningGetIO(String eventName,String eventDescription,String eventDate,String eventTime,String eventDuration,String eventCapacity,String eventVenue, String eventCity){
+        public LongRunningGetIO(String eventName,String eventDescription,String eventDate,String eventTime,String eventDuration,String eventCapacity,String eventVenue, String eventCity,String eventCategory){
             mEventName = eventName;
             mEventDescription = eventDescription;
             mEventDate = eventDate;
@@ -47,6 +47,7 @@ public class MainActivity extends Activity implements OnClickListener {
             mEventCapacity=eventCapacity;
             mEventVenue=eventVenue;
             mEventCity=eventCity;
+            mEventCategory=eventCategory;
             mUser = null;
         }
 
@@ -74,9 +75,10 @@ public class MainActivity extends Activity implements OnClickListener {
                 myJSON.put("capacity",mEventCapacity);
                 myJSON.put("venue",mEventVenue);
                 myJSON.put("city",mEventCity);
+                myJSON.put("category",mEventCategory);
             }
             catch(JSONException e){}
-            HttpHelper myHttp = new HttpHelper("http://192.168.43.23:3000");
+            HttpHelper myHttp = new HttpHelper(getResources().getString(R.string.http_server_ip_port));
             mUser = myHttp.postJson("/events.json",myJSON,"","");
             return "success";
         }
@@ -157,12 +159,13 @@ public class MainActivity extends Activity implements OnClickListener {
         final EditText eventCapacity = (EditText)findViewById(R.id.EventCapacity);
         final EditText eventVenue = (EditText)findViewById(R.id.EventVenue);
         final EditText eventCity = (EditText)findViewById(R.id.EventCity);
+        final EditText eventCategory = (EditText)findViewById(R.id.EventCategory);
         System.out.println(eventName.getText().toString());
         System.out.println(eventDescription.getText().toString());
         System.out.println(getDate());
         System.out.println(eventTime.getText().toString());
         System.out.println();
-        LongRunningGetIO exec = new LongRunningGetIO(eventName.getText().toString(),eventDescription.getText().toString(),getDate(),eventTime.getText().toString(),eventDuration.getText().toString(),eventCapacity.getText().toString(),eventVenue.getText().toString(),eventCity.getText().toString());
+        LongRunningGetIO exec = new LongRunningGetIO(eventName.getText().toString(),eventDescription.getText().toString(),getDate(),eventTime.getText().toString(),eventDuration.getText().toString(),eventCapacity.getText().toString(),eventVenue.getText().toString(),eventCity.getText().toString(),eventCategory.getText().toString());
         exec.execute();
     }
 }

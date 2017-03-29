@@ -56,7 +56,7 @@ public class DisplayEvent extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... voids) {
             System.out.println("do in background started");
-            HttpHelper httpHelper = new HttpHelper("http://192.168.43.23:3000");
+            HttpHelper httpHelper = new HttpHelper(getResources().getString(R.string.http_server_ip_port));
             event = httpHelper.getJsonObject("/events/"+eventId +".json", "", "");
             if(event == null) {
                 toast = "Connection problem...";

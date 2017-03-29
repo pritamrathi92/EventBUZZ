@@ -173,6 +173,20 @@
                 android:layout_marginTop="10dip"
                 android:text=""/>
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:fontFamily="casual"
+                android:text="Category"
+                android:textColor="#372c24"
+                android:textStyle="bold|italic" />
+            <EditText android:id="@+id/EventCategory"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text=""/>
+
         <Button android:id="@+id/btnCreateEvent"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

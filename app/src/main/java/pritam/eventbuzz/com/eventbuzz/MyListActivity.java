@@ -103,7 +103,7 @@ public class MyListActivity extends ListActivity implements View.OnClickListener
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            HttpHelper httpHelper = new HttpHelper("http://192.168.43.23:3000");
+            HttpHelper httpHelper = new HttpHelper(getResources().getString(R.string.http_server_ip_port));
             events = httpHelper.getJson("/events.json", "", "");
             if(events == null) {
                 toast = "Connection problem...";

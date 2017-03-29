@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">EventBUZZ</string>
     <string name="title_activity_event_list">EventList</string>
+    <string name="permission_rationale">Contacts permissions are needed for providing email completions.</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="server_ip_port">192.168.43.23:3000</string>
+    <string name="http_server_ip_port">"http://192.168.43.23:3000"</string>
 </resources>
