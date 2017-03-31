@@ -6,10 +6,11 @@
     >
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="20dp"
-        android:src="@drawable/ic_launcher"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/event"
         android:scaleType="fitStart"
         android:layout_weight="0.5"
         />
@@ -23,7 +24,7 @@
             android:id="@+id/firstLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:textAlignment="textStart"
             android:text="Example application"
             android:layout_gravity="start"
             android:scaleType="fitStart"
@@ -40,6 +41,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:text="Description"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
             android:layout_below="@id/firstLine"
             android:textStyle="bold"
             android:textSize="16sp"

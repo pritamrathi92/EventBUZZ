@@ -11,22 +11,6 @@
         android:background="#fff"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <!--  Header  Starts>
-        <LinearLayout android:id="@+id/header"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dip"
-            android:paddingBottom="5dip"
-            android:orientation="vertical">
-            <Logo Start-->
-
-            <!-- Logo Ends>
-        </LinearLayout>
-        <Header Ends -->
-        <!-- Footer Start -->
-        <!-- Footer Ends -->
-
-        <!-- Event Creation Form -->
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
@@ -34,8 +18,6 @@
             android:layout_height="wrap_content"
             android:padding="10dip"
             android:id="@+id/linearLayout">
-            <!--android:layout_below="@id/header"-->
-            <!-- Full Name Label -->
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

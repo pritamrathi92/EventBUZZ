@@ -106,11 +106,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:height="150dp"
                 android:background="@drawable/border"
                 android:fontFamily="casual"
                 android:textAlignment="center"
                 android:textSize="50px"
+                android:minHeight="150dp"
                 android:textStyle="italic" />
 
         </LinearLayout>

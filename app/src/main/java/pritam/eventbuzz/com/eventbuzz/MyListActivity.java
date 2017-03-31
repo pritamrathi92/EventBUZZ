@@ -1,17 +1,13 @@
 package pritam.eventbuzz.com.eventbuzz;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ListActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,18 +15,16 @@ import android.os.AsyncTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
-class MySimpleArrayAdapter extends ArrayAdapter<String> {
+class EventAdapter extends ArrayAdapter<String> {
     private final Context context;
     private final ArrayList<String> values;
     private final ArrayList<String> date;
 
-    public MySimpleArrayAdapter(Context context, ArrayList<String> values, ArrayList<String> date) {
+    public EventAdapter(Context context, ArrayList<String> values, ArrayList<String> date) {
         super(context, R.layout.rowlayout, values);
         this.context = context;
         this.values = values;
@@ -85,12 +79,12 @@ public class MyListActivity extends ListActivity implements View.OnClickListener
                 e.printStackTrace();
             }
         }
-        MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this,eventTitle,eventDate);
+        EventAdapter adapter = new EventAdapter(this,eventTitle,eventDate);
         setListAdapter(adapter);
     }
 
     public void onClick(View v) {
-        Intent intent = new Intent(MyListActivity.this,MainActivity.class);
+        Intent intent = new Intent(MyListActivity.this,AddEvent.class);
         startActivity(intent);
     }
 
@@ -114,7 +108,6 @@ public class MyListActivity extends ListActivity implements View.OnClickListener
 
         @Override
         protected void onPostExecute(final Boolean success) {
-
             if(success) {
                 updateEvents();
             } else {

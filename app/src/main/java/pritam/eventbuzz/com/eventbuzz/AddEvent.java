@@ -1,16 +1,7 @@
 package pritam.eventbuzz.com.eventbuzz;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Calendar;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -23,48 +14,35 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends Activity implements OnClickListener {
-    private DatePicker datePicker;
+public class AddEvent extends Activity implements OnClickListener {
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
-    private class LongRunningGetIO extends AsyncTask <Void, Void, String> {
+
+    private class CreateEvent extends AsyncTask <Void, Void, String> {
         String mEventName,mEventDescription,mEventDate,mEventTime,mEventDuration,mEventCapacity,mEventVenue,mEventCity,mEventCategory;
 
         private JSONObject mUser;
-        public LongRunningGetIO(String eventName,String eventDescription,String eventDate,String eventTime,String eventDuration,String eventCapacity,String eventVenue, String eventCity,String eventCategory){
-            mEventName = eventName;
-            mEventDescription = eventDescription;
-            mEventDate = eventDate;
-            mEventTime = eventTime;
-            mEventDuration=eventDuration;
-            mEventCapacity=eventCapacity;
-            mEventVenue=eventVenue;
-            mEventCity=eventCity;
-            mEventCategory=eventCategory;
+        public CreateEvent(Event event){
+            mEventName = event.getEventName();
+            mEventDescription = event.getEventDescription();
+            mEventDate = event.getEventDate();
+            mEventTime = event.getEventTime();
+            mEventDuration=event.getEventDuration();
+            mEventCapacity=event.getEventCapacity();
+            mEventVenue=event.getEventVenue();
+            mEventCity=event.getEventCity();
+            mEventCategory=event.getEventCategory();
             mUser = null;
         }
 
         @Override
         protected String doInBackground(Void... params) {
-            /*HttpClient httpClient = new DefaultHttpClient();
-            HttpContext localContext = new BasicHttpContext();
-            HttpGet httpGet = new HttpGet("http://192.168.43.23:3000/events/1.json");
-            String text = null;
-            try {
-                HttpResponse response = httpClient.execute(httpGet, localContext);
-                HttpEntity entity = response.getEntity();
-                text = getASCIIContentFromEntity(entity);
-            } catch (Exception e) {
-                return e.getLocalizedMessage();
-            }
-            return text;*/
             JSONObject myJSON = new JSONObject();
             try{
                 myJSON.put("name",mEventName);
@@ -84,16 +62,11 @@ public class MainActivity extends Activity implements OnClickListener {
         }
 
         protected void onPostExecute(String results) {
-            /*if (results!=null) {
-                EditText et = (EditText)findViewById(R.id.my_edit);
-                et.setText(results);
-            }*/
-
             Button b = (Button)findViewById(R.id.btnCreateEvent);
             b.setClickable(true);
             if(mEventName.length()>0) {
                 Toast.makeText(getApplicationContext(), "Event Created", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, MyListActivity.class);
+                Intent intent = new Intent(AddEvent.this, MyListActivity.class);
                 startActivity(intent);
             }
             else Toast.makeText(getApplicationContext(), "Enter event details", Toast.LENGTH_LONG).show();
@@ -103,9 +76,12 @@ public class MainActivity extends Activity implements OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_event);
         findViewById(R.id.btnCreateEvent).setOnClickListener(this);
+        setCurrentDate();
+    }
 
+    public void setCurrentDate(){
         dateView = (Button)findViewById(R.id.setDate);
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -147,11 +123,7 @@ public class MainActivity extends Activity implements OnClickListener {
         return date;
     }
 
-
-    @Override
-    public void onClick(View arg0) {
-        Button b = (Button)findViewById(R.id.btnCreateEvent);
-        b.setClickable(false);
+    public void getEventDetails(Event event){
         final EditText eventName = (EditText)findViewById(R.id.EventName);
         final EditText eventDescription = (EditText)findViewById(R.id.EventDescription);
         final EditText eventTime = (EditText)findViewById(R.id.EventTime);
@@ -160,12 +132,25 @@ public class MainActivity extends Activity implements OnClickListener {
         final EditText eventVenue = (EditText)findViewById(R.id.EventVenue);
         final EditText eventCity = (EditText)findViewById(R.id.EventCity);
         final EditText eventCategory = (EditText)findViewById(R.id.EventCategory);
-        System.out.println(eventName.getText().toString());
-        System.out.println(eventDescription.getText().toString());
-        System.out.println(getDate());
-        System.out.println(eventTime.getText().toString());
-        System.out.println();
-        LongRunningGetIO exec = new LongRunningGetIO(eventName.getText().toString(),eventDescription.getText().toString(),getDate(),eventTime.getText().toString(),eventDuration.getText().toString(),eventCapacity.getText().toString(),eventVenue.getText().toString(),eventCity.getText().toString(),eventCategory.getText().toString());
-        exec.execute();
+
+        event.setEventName(eventName.getText().toString());
+        event.setEventDescription(eventDescription.getText().toString());
+        event.setEventDate(getDate());
+        event.setEventTime(eventTime.getText().toString());
+        event.setEventDuration(eventDuration.getText().toString());
+        event.setEventCapacity(eventCapacity.getText().toString());
+        event.setEventVenue(eventVenue.getText().toString());
+        event.setEventCity(eventCity.getText().toString());
+        event.setEventCategory(eventCategory.getText().toString());
+    }
+
+    @Override
+    public void onClick(View arg0) {
+        Button b = (Button)findViewById(R.id.btnCreateEvent);
+        b.setClickable(false);
+        Event event = new Event();
+        getEventDetails(event);
+        CreateEvent createEvent = new CreateEvent(event);
+        createEvent.execute();
     }
 }
