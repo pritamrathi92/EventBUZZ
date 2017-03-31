@@ -1,7 +1,4 @@
 package pritam.eventbuzz.com.eventbuzz;
-/**
- * Created by pritam on 23/3/17.
- */
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -16,7 +13,6 @@ import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -141,9 +137,6 @@ public class HttpHelper {
             while((line = bufferedReader.readLine()) != null)
                 stringBuilder.append(line);
             String response = stringBuilder.toString();
-            System.out.println("******************************************************************");
-            System.out.println(response);
-            System.out.println("******************************************************************");
             jsonResponse = new JSONArray(response);
         } catch (IOException e) {
             e.printStackTrace();

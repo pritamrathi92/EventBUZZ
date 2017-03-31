@@ -1,7 +1,6 @@
 package pritam.eventbuzz.com.eventbuzz;
 
 import java.util.Calendar;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -15,7 +14,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -91,7 +89,6 @@ public class AddEvent extends Activity implements OnClickListener {
     }
 
     protected Dialog onCreateDialog(int id) {
-        // TODO Auto-generated method stub
         if (id == 999) {
             return new DatePickerDialog(this, myDateListener, year, month, day);
         }
@@ -106,7 +103,6 @@ public class AddEvent extends Activity implements OnClickListener {
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-                // TODO Auto-generated method stub
                 year=arg1;
                 month=arg2+1;
                 day=arg3;

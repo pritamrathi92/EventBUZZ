@@ -12,10 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.AsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import java.util.ArrayList;
 
 
@@ -61,7 +59,6 @@ public class MyListActivity extends ListActivity implements View.OnClickListener
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-
         String item = (String) getListAdapter().getItem(position);
         Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(MyListActivity.this,DisplayEvent.class);
@@ -88,7 +85,7 @@ public class MyListActivity extends ListActivity implements View.OnClickListener
         startActivity(intent);
     }
 
-    public class GetEvents extends AsyncTask<Void, Void, Boolean> {
+    private class GetEvents extends AsyncTask<Void, Void, Boolean> {
         private String toast;
 
         public GetEvents() {

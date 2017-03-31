@@ -19,9 +19,6 @@ public class DisplayEvent extends AppCompatActivity {
         setContentView(R.layout.activity_display_event);
         Intent intent = getIntent();
         eventId = intent.getStringExtra(MyListActivity.EXTRA_MESSAGE);
-        System.out.print(eventId);
-//        TextView textView = (TextView) findViewById(R.id.textView);
-//        textView.setText(eventId);
         new GetEvent().execute();
 
     }
@@ -37,16 +34,11 @@ public class DisplayEvent extends AppCompatActivity {
             date.setText(eventDate);
             TextView description = (TextView) findViewById(R.id.description);
             description.setText(eventDescription);
-
-            System.out.println(eventName);
-
-        }catch (JSONException e){
-
-        }
+        }catch (JSONException e){ }
     }
 
 
-    public class GetEvent extends AsyncTask<Void, Void, Boolean> {
+    private class GetEvent extends AsyncTask<Void, Void, Boolean> {
         private String toast;
 
         public GetEvent() {
@@ -67,7 +59,6 @@ public class DisplayEvent extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
-
             if(success) {
                 updateEvent();
             } else {
