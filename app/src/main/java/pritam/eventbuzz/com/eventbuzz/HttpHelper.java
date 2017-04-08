@@ -62,6 +62,42 @@ public class HttpHelper {
         return jsonResponse;
     }
 
+    public JSONArray postJsonArray(String location, JSONObject params, String email, String token) {
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpConnectionParams.setConnectionTimeout(httpClient.getParams(), 10000);
+        HttpPost httpPost = new HttpPost(domain + location);
+        HttpResponse httpResponse = null;
+        JSONArray jsonResponse = null;
+        try {
+            StringEntity stringEntity = new StringEntity(params.toString());
+            httpPost.setEntity(stringEntity);
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
+            httpPost.setHeader("X-User-Email", email);
+            httpPost.setHeader("X-User-Token", token);
+            httpResponse = httpClient.execute(httpPost);
+            if(httpResponse == null)
+                return null;
+            InputStream in = httpResponse.getEntity().getContent();
+            StringBuilder stringBuilder = new StringBuilder();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+            String line;
+            while((line = bufferedReader.readLine()) != null)
+                stringBuilder.append(line);
+            String response = stringBuilder.toString();
+            jsonResponse = new JSONArray(response);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonResponse;
+    }
+
     public JSONObject putJson(String location, JSONObject params, String email, String token) {
         HttpClient httpClient = new DefaultHttpClient();
         HttpConnectionParams.setConnectionTimeout(httpClient.getParams(), 10000);

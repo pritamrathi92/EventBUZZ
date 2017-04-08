@@ -89,6 +89,56 @@
 
             </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="0px"
+                android:paddingTop="0px"
+                android:maxHeight="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:height="30dp"
+                    android:layout_gravity=""
+                    android:id="@+id/event_attending"
+                    android:text="Are you attending?"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:maxHeight="50dp"
+                    android:layout_weight="0.5"
+                    />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/attendYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="15dp"
+                    android:text="Yes"
+                    android:textColor="#ffffff"
+                    android:layout_weight="0.2"
+                    android:layout_toRightOf="@id/event_attending"/>
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/attendNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="May Be"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="#ffffff"
+                    android:layout_weight="0.2"
+                    android:layout_toRightOf="@id/attendYes"
+                    />
+            </RelativeLayout>>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

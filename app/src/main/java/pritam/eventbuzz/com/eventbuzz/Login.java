@@ -183,8 +183,9 @@ public class Login extends AppCompatActivity {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             if (success) {
-                Intent intent = new Intent(mLoginActivity, MyListActivity.class);
+                Intent intent = new Intent(mLoginActivity, TabView.class);
                 intent.putExtra("user", mUser.toString());
+                DataHolder.setEmail(mEmail);
                 startActivity(intent);
             } else {
                 mEmailView.setError("Unsuccessful login attempt. Try again!");

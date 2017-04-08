@@ -17,30 +17,6 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 
-class EventAdapter extends ArrayAdapter<String> {
-    private final Context context;
-    private final ArrayList<String> values;
-    private final ArrayList<String> date;
-
-    public EventAdapter(Context context, ArrayList<String> values, ArrayList<String> date) {
-        super(context, R.layout.rowlayout, values);
-        this.context = context;
-        this.values = values;
-        this.date = date;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
-        TextView textView1 = (TextView) rowView.findViewById(R.id.firstLine);
-        TextView textView2 = (TextView) rowView.findViewById(R.id.secondLine);
-        textView1.setText(values.get(position));
-        textView2.setText(date.get(position));
-        return rowView;
-    }
-}
-
 
 public class MyListActivity extends ListActivity implements View.OnClickListener {
     public static String EXTRA_MESSAGE = "pritam.eventbuzz.com.eventbuzz";

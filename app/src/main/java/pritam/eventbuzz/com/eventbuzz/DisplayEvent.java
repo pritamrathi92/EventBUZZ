@@ -1,27 +1,36 @@
 package pritam.eventbuzz.com.eventbuzz;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DisplayEvent extends AppCompatActivity {
+public class DisplayEvent extends Activity implements View.OnClickListener {
     private String eventId;
     private JSONObject event;
+    private Button attendYes;
+    private Button attendNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_event);
         Intent intent = getIntent();
         eventId = intent.getStringExtra(MyListActivity.EXTRA_MESSAGE);
+        attendYes = (Button) findViewById(R.id.attendYes);
+        attendNo = (Button) findViewById(R.id.attendNo);
+        attendYes.setOnClickListener(this);
+        attendNo.setOnClickListener(this);
         new GetEvent().execute();
-
     }
+
     private void  updateEvent(){
         try{
             String eventName = event.get("name").toString();
@@ -35,6 +44,25 @@ public class DisplayEvent extends AppCompatActivity {
             TextView description = (TextView) findViewById(R.id.description);
             description.setText(eventDescription);
         }catch (JSONException e){ }
+    }
+
+    @Override
+    public void onClick(View v) {
+        TextView tv = (TextView) findViewById(R.id.event_attending);
+        switch(v.getId()){
+            case R.id.attendYes:
+                tv.setText("You are attending");
+                attendYes.setClickable(false);
+                attendNo.setClickable(false);
+                attendYes.setVisibility(View.INVISIBLE);
+                attendNo.setVisibility(View.INVISIBLE);
+                break;
+
+            case R.id.attendNo:
+                attendNo.setClickable(false);
+                attendNo.setVisibility(View.INVISIBLE);
+                break;
+        }
     }
 
 
