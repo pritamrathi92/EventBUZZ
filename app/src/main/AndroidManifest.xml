@@ -25,7 +25,8 @@
         <activity android:name=".TabView" />
         <activity android:name=".InterestEventActivity" />
         <activity android:name=".MeActivity" />
-        <activity android:name=".InterestActivity"></activity>
+        <activity android:name=".InterestActivity" />
+        <activity android:name=".AttendEventListActivity"></activity>
     </application>
 
 </manifest>

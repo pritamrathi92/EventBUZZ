@@ -52,6 +52,7 @@ public class AddEvent extends Activity implements OnClickListener {
                 myJSON.put("venue",mEventVenue);
                 myJSON.put("city",mEventCity);
                 myJSON.put("category",mEventCategory);
+                myJSON.put("image","music_launch.jpeg");
             }
             catch(JSONException e){}
             HttpHelper myHttp = new HttpHelper(getResources().getString(R.string.http_server_ip_port));
@@ -103,10 +104,10 @@ public class AddEvent extends Activity implements OnClickListener {
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-                year=arg1;
-                month=arg2+1;
-                day=arg3;
-                showDate(arg1, arg2+1, arg3);
+        year=arg1;
+        month=arg2+1;
+        day=arg3;
+        showDate(arg1, arg2+1, arg3);
             }
     };
 

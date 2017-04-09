@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 class MeAdapter extends ArrayAdapter<String> {
@@ -45,7 +46,7 @@ class MeAdapter extends ArrayAdapter<String> {
 public class MeActivity extends ListActivity{
 
     private ArrayList<String> options = new ArrayList<String>();
-    Hashtable<String,Integer> meOptions = new Hashtable<String,Integer>();
+    LinkedHashMap<String,Integer> meOptions = new LinkedHashMap<String,Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,11 @@ public class MeActivity extends ListActivity{
         setContentView(R.layout.activity_me);
         meOptions.put("My Interests",1);
         meOptions.put("Events History",2);
-        meOptions.put("Attending",3);
+        meOptions.put("Events Attending",3);
+        meOptions.put("Send Feedback",4);
+        meOptions.put("Settings",5);
+        meOptions.put("About us",6);
+        meOptions.put("Sign out",7);
         updateOptions();
     }
 
@@ -70,14 +75,13 @@ public class MeActivity extends ListActivity{
         Intent intent = null;
         String item = (String) getListAdapter().getItem(position);
         Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
-        System.out.println("*************CLICKED*******************************");
         switch(meOptions.get(item)){
             case 1: intent = new Intent(this,InterestActivity.class);
                     break;
             case 2: //Add event history activity
                     intent = new Intent(this,InterestActivity.class);
                     break;
-            case 3: intent = new Intent(this,MeActivity.class);
+            case 3: intent = new Intent(this,AttendEventListActivity.class);
                     break;
         }
        //intent.putExtra(EXTRA_MESSAGE,eventIds.get(position).toString());

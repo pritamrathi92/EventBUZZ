@@ -25,6 +25,7 @@ public class InterestEventActivity extends ListActivity implements View.OnClickL
     private ArrayList<String> eventTitle = new ArrayList<String>();
     private ArrayList<String> eventDate = new ArrayList<String>();
     private ArrayList<Integer> eventIds = new ArrayList<Integer>();
+    private ArrayList<String> eventImage = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class InterestEventActivity extends ListActivity implements View.OnClickL
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
+        if(eventIds.get(position)==-1) return;
         String item = (String) getListAdapter().getItem(position);
         Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this,DisplayEvent.class);
@@ -44,20 +46,21 @@ public class InterestEventActivity extends ListActivity implements View.OnClickL
     private void updateEvents(){
         for(Map.Entry m:userInterestEventList.entrySet()) {
             JSONArray events = (JSONArray) m.getValue();
-            /*EventAdapter adapter1 = new EventAdapter(this,eventTitle,eventDate,(String)m.getKey());
-            setListAdapter(adapter1);*/
             eventTitle.add((String)m.getKey());
-            eventDate.add(null);
+            eventDate.add("event_title");
+            eventIds.add(-1);
+            eventImage.add(null);
             for (int i = 0; i < events.length(); i++) {
                 try {
                     eventIds.add((Integer) events.getJSONObject(i).get("id"));
                     eventTitle.add((String) events.getJSONObject(i).get("name"));
                     eventDate.add((String) events.getJSONObject(i).get("date"));
+                    eventImage.add((String) events.getJSONObject(i).get("image"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            EventAdapter adapter = new EventAdapter(this,eventTitle,eventDate);
+            EventAdapter adapter = new EventAdapter(this,eventTitle,eventDate,eventImage);
             setListAdapter(adapter);
         }
     }

@@ -64,9 +64,6 @@ public class InterestActivity extends Activity {
 
     private void setThumbnailSelection(){
         for (String interest : interestList){
-            System.out.println("********************************");
-            System.out.println(interest+"   "+interestMap.get(interest));
-            System.out.println("********************************");
             thumbnailsSelection[interestMap.get(interest)] = true;
         }
     }
@@ -85,12 +82,12 @@ public class InterestActivity extends Activity {
             try {
                 userInterests = new JSONObject();
                 userInterests.put("email", DataHolder.getEmail());
-                if (thumbnailsSelection[0]==true){
-                    interests.put("Sports");
-                }
-                if (thumbnailsSelection[1]==true){
-                    interests.put("Dance");
-                }
+                if (thumbnailsSelection[0]==true){ interests.put("Sports"); }
+                if (thumbnailsSelection[1]==true){ interests.put("Dance");  }
+                if (thumbnailsSelection[2]==true){ interests.put("Music");  }
+                if (thumbnailsSelection[3]==true){ interests.put("Business");  }
+                if (thumbnailsSelection[4]==true){ interests.put("Exhibitions");  }
+                if (thumbnailsSelection[5]==true){ interests.put("Workshops");  }
                 userInterests.put("interests", interests);
             } catch (JSONException e) {
                 e.printStackTrace();

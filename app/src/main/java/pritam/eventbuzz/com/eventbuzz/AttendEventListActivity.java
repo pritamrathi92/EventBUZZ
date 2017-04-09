@@ -1,24 +1,23 @@
 package pritam.eventbuzz.com.eventbuzz;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.app.ListActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
+public class AttendEventListActivity extends ListActivity {
 
-
-public class MyListActivity extends ListActivity implements View.OnClickListener {
     public static String EXTRA_MESSAGE = "pritam.eventbuzz.com.eventbuzz";
     private JSONArray events;
     private ArrayList<String> eventTitle = new ArrayList<String>();
@@ -29,16 +28,15 @@ public class MyListActivity extends ListActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_list);
-        findViewById(R.id.floatingActionButton).setOnClickListener(this);
-        new GetEvents().execute();
+        setContentView(R.layout.activity_attend_event_list);
+        new GetAttendingEvent().execute();
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         String item = (String) getListAdapter().getItem(position);
         Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(MyListActivity.this,DisplayEvent.class);
+        Intent intent = new Intent(AttendEventListActivity.this,DisplayEvent.class);
         intent.putExtra(EXTRA_MESSAGE,eventIds.get(position).toString());
         startActivity(intent);
     }
@@ -58,25 +56,28 @@ public class MyListActivity extends ListActivity implements View.OnClickListener
         setListAdapter(adapter);
     }
 
-    public void onClick(View v) {
-        Intent intent = new Intent(MyListActivity.this,AddEvent.class);
-        startActivity(intent);
-    }
-
-    private class GetEvents extends AsyncTask<Void, Void, Boolean> {
+    private class GetAttendingEvent extends AsyncTask<Void, Void, Boolean> {
         private String toast;
+        private JSONObject requestParams = new JSONObject();
 
-        public GetEvents() {
+        public GetAttendingEvent() {
             toast = null;
         }
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            HttpHelper httpHelper = new HttpHelper(getResources().getString(R.string.http_server_ip_port));
-            events = httpHelper.getJson("/events.json", "", "");
-            if(events == null) {
-                toast = "Connection problem...";
-                return false;
+            try {
+                HttpHelper httpHelper = new HttpHelper(getResources().getString(R.string.http_server_ip_port));
+                requestParams.put("email", DataHolder.getEmail());
+                events = httpHelper.postJsonArray("/user_events/index.json", requestParams,"", "");
+                if (events == null) {
+                    toast = "Connection problem 1...";
+                    return false;
+                }
+            }
+            catch(JSONException e){
+                e.printStackTrace();
+                return  false;
             }
             return true;
         }
@@ -86,7 +87,7 @@ public class MyListActivity extends ListActivity implements View.OnClickListener
             if(success) {
                 updateEvents();
             } else {
-                Toast.makeText(getBaseContext(), "Connection problem...", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), toast, Toast.LENGTH_LONG).show();
             }
         }
     }
