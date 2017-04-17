@@ -50,11 +50,7 @@ public class DisplayEvent extends Activity implements View.OnClickListener {
             String eventDescription = event.get("description").toString();
             String image = event.get("image").toString();
             ImageView iv = (ImageView) findViewById(R.id.display_image);
-            System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-            System.out.println(image);
-            System.out.println(iv);
-            System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-            ImageHandler imageHandler = new ImageHandler(iv,"http://192.168.43.23:3000/images/"+image);
+            ImageHandler imageHandler = new ImageHandler(iv,getResources().getString(R.string.http_server_ip_port)+"/images/"+image);
             imageHandler.execute();
             TextView location = (TextView) findViewById(R.id.location);
             location.setText(eventLocation);

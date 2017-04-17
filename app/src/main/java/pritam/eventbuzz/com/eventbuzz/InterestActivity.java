@@ -156,10 +156,8 @@ public class InterestActivity extends Activity {
     public class ImageAdapter extends BaseAdapter {
         private LayoutInflater mInflater;
         public Integer[] mThumbIds = {R.drawable.sports,R.drawable.dance,R.drawable.music,R.drawable.business,R.drawable.exhibitions,R.drawable.workshops};
-        private Context mContext;
         public ImageAdapter() {
             mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-           //this.mContext = c;
         }
 
         public int getCount() {
@@ -173,15 +171,6 @@ public class InterestActivity extends Activity {
         public long getItemId(int position) {
             return 0;
         }
-
-        @Override
-        /*public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView imageView = new ImageView(this.mContext);
-            imageView.setImageResource(mThumbIds[position]);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setLayoutParams(new GridView.LayoutParams(70, 70));
-            return imageView;
-        }*/
 
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewHolder holder;
@@ -199,19 +188,6 @@ public class InterestActivity extends Activity {
             }
             holder.checkbox.setId(position);
             holder.imageview.setId(position);
-
-          /*  for (int i=0;i<thumbnailsSelection.length;i++){
-                System.out.println("###############################################");
-                if (thumbnailsSelection[i]){
-                    System.out.println("visible");
-                    holder.checkbox.setVisibility(View.VISIBLE);
-                } else {
-                  *//*  System.out.println("invisible");
-                    holder.checkbox.setVisibility(View.INVISIBLE);*//*
-                }
-                System.out.println("###############################################");
-                holder.checkbox.setChecked(thumbnailsSelection[i]);
-            }*/
 
             holder.checkbox.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -243,7 +219,6 @@ public class InterestActivity extends Activity {
                 }
             });
 
-            //holder.imageview.setOnClickListener(new ImageClickListener(context, holder,thumbnailsselection));
             holder.imageview.setImageResource(mThumbIds[position]);
             holder.checkbox.setChecked(thumbnailsSelection[position]);
             holder.id = position;

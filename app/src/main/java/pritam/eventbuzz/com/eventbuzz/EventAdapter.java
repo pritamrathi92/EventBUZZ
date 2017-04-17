@@ -44,7 +44,7 @@ public class EventAdapter extends ArrayAdapter<String> {
             textView2.setVisibility(View.GONE);
         }
         else{
-            ImageHandler imageHandler = new ImageHandler(iv,"http://192.168.43.23:3000/images/"+image_url.get(position));
+            ImageHandler imageHandler = new ImageHandler(iv,"https://warm-retreat-97731.herokuapp.com/images/"+image_url.get(position));
             imageHandler.execute();
             //imageHandler.loadImage("http://192.168.43.23:3000/images/event1.jpg");
             textView2.setText(date.get(position));
